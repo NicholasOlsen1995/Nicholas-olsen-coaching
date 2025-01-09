@@ -1,0 +1,186 @@
+DOCTYPE html>
+<html l<!ang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicholas Olsen Football Coaching</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .hero {
+            text-align: center;
+            background: #007BFF;
+            color: white;
+            padding: 20px 0;
+        }
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        .bio, .gallery, .reviews {
+            margin: 20px 0;
+        }
+        .bio p, .reviews p {
+            margin: 10px 0;
+        }
+        .gallery img {
+            max-width: 100%;
+            margin: 10px 0;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            color: #fff;
+            background: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        button:hover:enabled {
+            background: #0056b3;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Nicholas Olsen Football Coaching</h1>
+        <p>Train with a professional. Unlock your potential.</p>
+    </div>
+
+    <div class="container bio">
+        <h2>About Nicholas Olsen</h2>
+        <p>Nicholas Olsen is a professional footballer with years of experience playing at the highest levels. His journey in football showcases his dedication, resilience, and passion for the sport. Nicholas specializes in tailored coaching sessions to improve technique, strategy, and physical performance.</p>
+        <blockquote>"Hard work and resilience are the keys to success."</blockquote>
+    </div>
+
+    <div class="container gallery">
+        <h2>Gallery</h2>
+        <img src="photo1.jpg" alt="Nicholas coaching a session">
+        <img src="photo2.jpg" alt="Nicholas playing in a professional match">
+        <img src="photo3.jpg" alt="Team huddle led by Nicholas">
+    </div>
+
+    <div class="container reviews">
+        <h2>Reviews</h2>
+        <p>"Nicholas is an amazing coach. My skills improved drastically!" - John D.</p>
+        <p>"His sessions are intense but incredibly rewarding." - Sarah L.</p>
+    </div>
+
+    <div class="container">
+        <h1>Book Your Session</h1>
+        <form action="/submit_booking" method="POST" onsubmit="handleSubmit(event)">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full_name" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1" required>
+
+            <label for="team">Current Team/Club:</label>
+            <input type="text" id="team" name="team" required>
+
+            <label for="position">Position Played:</label>
+            <select id="position" name="position" required>
+                <option value="">Select Your Position</option>
+                <option value="Goalkeeper">Goalkeeper</option>
+                <option value="Defender">Defender</option>
+                <option value="Midfielder">Midfielder</option>
+                <option value="Forward">Forward</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <label for="guardian">Parent/Guardian Name (if under 18):</label>
+            <input type="text" id="guardian" name="guardian">
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="goals">Goals for Training (Optional):</label>
+            <textarea id="goals" name="goals" rows="4" maxlength="500"></textarea>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the terms of service.</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="media-consent" name="media_consent">
+                <label for="media-consent">I consent to the use of photos and videos for promotional materials, including social media, website content, and marketing campaigns.</label>
+            </div>
+
+            <button type="submit" disabled>Submit Booking</button>
+            <div class="loading">Submitting... Please wait.</div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const form = document.querySelector('form');
+            const submitButton = document.querySelector('button[type="submit"]');
+            const requiredFields = form.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                }
+            });
+
+            submitButton.disabled = !isValid;
+        }
+
+        document.addEventListener('input', validateForm);
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const submitButton = document.querySelector('button[type="submit"]');
+            const loadingIndicator = document.querySelector('.loading');
+
+            submitButton.disabled = true;
+            loadingIndicator.style.display = 'block';
+
+            // Simulate form submission (replace with actual form submission logic)
+            setTimeout(() => {
+                event.target.submit();
+            }, 2000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            validateForm();
+        });
+    </script>
+</body>
+</html>
